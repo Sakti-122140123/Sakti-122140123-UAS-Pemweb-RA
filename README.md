@@ -216,6 +216,7 @@ echo htmlspecialchars($data);
 ```
 
 4. HTTPS:
+
    Menggunakan sertifikat SSL gratis yang disediakan oleh InfinityFree untuk mengamankan komunikasi antara server dan pengguna.
 
 ### 4. Konfigurasi Server (5%)
