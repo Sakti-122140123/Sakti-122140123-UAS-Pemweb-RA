@@ -221,10 +221,10 @@ echo htmlspecialchars($data);
 
 ```
 class Database {
-    private $host = "sql213.infinityfree.com";
-    private $username = "if0_37966635";
-    private $password = "Saktimujahid15"; 
-    private $database = "if0_37966635_lomba_17agustus";
+    private $host = "Sesuaikan dengan host di InfinityFree";          //Contoh : sql123.infinityfree.com
+    private $username = "Sesuaikan dengan username di InfinityFree";  //Contoh : if0_37966636
+    private $password = "Sesuaikan dengan password di InfinityFree";  //Contoh : AnakTampan123
+    private $database = "Sesuaikan dengan database di InfinityFree";  //Contoh : if0_37966636_lomba_17agustus
     private $conn;
 ```
 
