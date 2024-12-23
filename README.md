@@ -2,6 +2,18 @@
 
 Website Pendaftaran Lomba 17 Agustus
 
+## Cara Penggunaan
+
+Website dapat diakses di: https://daftarlomba17.wuaze.com/
+
+## Pengembang
+
+Nama   : Sakti Mujahid Imani
+
+NIM    : 122140123
+
+Kelas  : RA
+
 ## Deskripsi Project
 
 Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplikasi ini memungkinkan pengguna untuk:
@@ -14,13 +26,14 @@ Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplika
 ## Struktur File
 
 ```
-📦 lomba-17-agustus
- ├── connection.php    # Konfigurasi database
- ├── daftar.php       # Halaman pendaftaran
- ├── index.php        # Halaman utama
- ├── peserta.php      # Halaman daftar peserta
- ├── script.js        # File JavaScript
- ├── style.css        # File CSS
+📦 UAS_RA
+ ├── connection.php       # Konfigurasi database
+ ├── daftar.php           # Halaman pendaftaran
+ ├── index.php            # Halaman utama
+ ├── Logo.png             # Logo Website
+ ├── peserta.php          # Halaman daftar peserta
+ ├── script.js            # File JavaScript
+ ├── style.css            # File CSS
  └── lomba_17agustus.sql  # File database
 ```
 
@@ -225,18 +238,3 @@ ServerSignature Off
 3. Validasi form real-time
 4. Pesan feedback untuk user
 5. HTTPS/SSL security
-
-## Cara Penggunaan
-
-1. Clone repository ini
-2. Import `lomba_17agustus.sql` ke database
-3. Sesuaikan konfigurasi database di `connection.php`
-4. Akses melalui web browser
-
-Website dapat diakses di: https://daftarlomba17.wuaze.com/
-
-## Pengembang
-
-Nama: Sakti Mujahid Imani
-NIM: 122140123
-Kelas: RA
