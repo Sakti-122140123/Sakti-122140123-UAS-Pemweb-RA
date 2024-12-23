@@ -2,6 +2,16 @@
 
 Website Pendaftaran Lomba 17 Agustus
 
+## Cara Penggunaan
+
+Website dapat diakses di: https://daftarlomba17.wuaze.com/
+
+## Pengembang
+
+Nama: Sakti Mujahid Imani
+NIM: 122140123
+Kelas: RA
+
 ## Deskripsi Project
 
 Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplikasi ini memungkinkan pengguna untuk:
@@ -225,13 +235,3 @@ ServerSignature Off
 3. Validasi form real-time
 4. Pesan feedback untuk user
 5. HTTPS/SSL security
-
-## Cara Penggunaan
-
-Website dapat diakses di: https://daftarlomba17.wuaze.com/
-
-## Pengembang
-
-Nama: Sakti Mujahid Imani
-NIM: 122140123
-Kelas: RA
