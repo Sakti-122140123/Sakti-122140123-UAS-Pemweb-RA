@@ -54,6 +54,46 @@ Pada website ini, manipulasi DOM diimplementasikan dalam form pendaftaran (`daft
 </form>
 ```
 
+Menampilkan data dari server ke dalam sebuah tabel HTML pada (`peserta.php`).
+
+```php
+<table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Umur</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Pilihan Lomba</th>
+                        <th>Waktu Daftar</th>
+                        <th>Browser</th>
+                        <th>IP Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        $no = 1;
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $no++ . "</td>";
+                            echo "<td>" . htmlspecialchars($row['nama_lengkap']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['umur']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['jenis_kelamin']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['pilihan_lomba']) . "</td>";
+                            echo "<td>" . date('d/m/Y H:i', strtotime($row['created_at'])) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['browser']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['ip_address']) . "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8' class='text-center'>Belum ada peserta yang terdaftar</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+```
+
 **Penjelasan:** Form ini memiliki validasi client-side menggunakan JavaScript untuk memastikan data yang dimasukkan sesuai kriteria sebelum dikirim ke server.
 
 ### 1.2 Event Handling (15%)
@@ -61,29 +101,39 @@ Pada website ini, manipulasi DOM diimplementasikan dalam form pendaftaran (`daft
 Event yang diimplementasikan dalam `script.js`:
 
 ```javascript
-// 1. Event submit form
-form.addEventListener("submit", function () {
-  if (validateForm()) {
-    // Logika submit
+function validateForm() {
+  // Validasi Nama
+  const nama = document.getElementById("nama").value;
+  if (nama.length < 3) {
+    showAlert("Nama harus minimal 3 karakter!", "error");
+    return false;
   }
-});
 
-// 2. Event perubahan input
-input.addEventListener("change", function () {
-  sessionStorage.setItem(input.id, input.value);
-});
+  // Validasi Umur
+  const umur = document.getElementById("umur").value;
+  if (umur < 5 || umur > 60) {
+    showAlert("Umur harus antara 5-60 tahun!", "error");
+    return false;
+  }
 
-// 3. Event animasi card
-card.addEventListener("mouseenter", function () {
-  this.style.transform = "translateY(-10px)";
-});
+  // Validasi Nomor Telepon
+  const nomorTelepon = document.getElementById("nomor_telepon").value;
+  if (!/^[0-9]{10,13}$/.test(nomorTelepon)) {
+    showAlert("Nomor telepon harus 10-13 digit angka!", "error");
+    return false;
+  }
+
+  // Validasi Pilihan Lomba
+  const pilihanLomba = document.getElementById("pilihan_lomba").value;
+  if (!pilihanLomba) {
+    showAlert("Silakan pilih lomba yang akan diikuti!", "error");
+    return false;
+  }
 ```
 
 **Penjelasan:**
 
-- Event submit: Memvalidasi form sebelum pengiriman
-- Event change: Menyimpan data sementara di sessionStorage
-- Event mouseenter: Memberikan efek animasi pada card lomba
+Memvalidasi isian jawaba
 
 ## Bagian 2: Server-side Programming (30%)
 

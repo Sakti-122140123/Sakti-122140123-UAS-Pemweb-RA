@@ -1,17 +1,32 @@
 <?php
+/**
+ * Halaman daftar peserta lomba 17 Agustus
+ * Menampilkan data peserta dari database
+ */
 session_start();
 require_once 'connection.php';
 
-$db = new Database();
-$conn = $db->getConnection();
+try {
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
 
-$result = $conn->query("SELECT * FROM peserta ORDER BY created_at DESC");
+    // Prepare and execute query
+    $query = "SELECT * FROM peserta ORDER BY created_at DESC";
+    $result = $conn->query($query);
+
+    if (!$result) {
+        throw new Exception("Error executing query: " . $conn->error);
+    }
+} catch (Exception $e) {
+    $_SESSION['error_message'] = "Terjadi kesalahan: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daftar peserta lomba 17 Agustus">
     <title>Data Peserta Lomba 17 Agustus</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
@@ -34,8 +49,17 @@ $result = $conn->query("SELECT * FROM peserta ORDER BY created_at DESC");
             <?php if (isset($_SESSION['success_message'])): ?>
                 <div class="alert success">
                     <?php 
-                        echo $_SESSION['success_message'];
+                        echo htmlspecialchars($_SESSION['success_message']);
                         unset($_SESSION['success_message']);
+                    ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert error">
+                    <?php 
+                        echo htmlspecialchars($_SESSION['error_message']);
+                        unset($_SESSION['error_message']);
                     ?>
                 </div>
             <?php endif; ?>
@@ -55,7 +79,7 @@ $result = $conn->query("SELECT * FROM peserta ORDER BY created_at DESC");
                 </thead>
                 <tbody>
                     <?php 
-                    if ($result->num_rows > 0) {
+                    if (isset($result) && $result->num_rows > 0) {
                         $no = 1;
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
@@ -83,4 +107,8 @@ $result = $conn->query("SELECT * FROM peserta ORDER BY created_at DESC");
     </footer>
 </body>
 </html>
-<?php $db->closeConnection(); ?>
+<?php 
+if (isset($db)) {
+    $db->closeConnection();
+} 
+?>

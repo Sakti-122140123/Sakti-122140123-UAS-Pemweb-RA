@@ -1,12 +1,18 @@
 <?php
+/**
+ * Halaman pendaftaran lomba 17 Agustus
+ * Menangani input form dan validasi data peserta
+ */
 session_start();
 require_once 'connection.php';
 
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = new Database();
+    // Get database instance
+    $db = Database::getInstance();
     $conn = $db->getConnection();
     
-    // Validasi input server-side
+    // Server-side validation
     $nama = filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_STRING);
     $umur = filter_input(INPUT_POST, 'umur', FILTER_VALIDATE_INT);
     $jenis_kelamin = filter_input(INPUT_POST, 'jenis_kelamin', FILTER_SANITIZE_STRING);
@@ -14,22 +20,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pilihan_lomba = filter_input(INPUT_POST, 'pilihan_lomba', FILTER_SANITIZE_STRING);
     
     // Get browser and IP information
-    $browser = $_SERVER['HTTP_USER_AGENT'];
-    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $browser = filter_var($_SERVER['HTTP_USER_AGENT'], FILTER_SANITIZE_STRING);
+    $ip_address = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
 
+    // Validate all required fields
     if ($nama && $umur && $jenis_kelamin && $nomor_telepon && $pilihan_lomba) {
-        $stmt = $conn->prepare("INSERT INTO peserta (nama_lengkap, umur, jenis_kelamin, nomor_telepon, pilihan_lomba, browser, ip_address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sisssss", $nama, $umur, $jenis_kelamin, $nomor_telepon, $pilihan_lomba, $browser, $ip_address);
-        
-        if ($stmt->execute()) {
-            $_SESSION['success_message'] = "Pendaftaran berhasil!";
-            setcookie("last_registration", $nama, time() + (86400 * 30), "/");
-            header("Location: peserta.php");
-            exit();
-        } else {
-            $_SESSION['error_message'] = "Terjadi kesalahan saat mendaftar.";
+        try {
+            // Prepare statement to prevent SQL injection
+            $stmt = $conn->prepare("INSERT INTO peserta (nama_lengkap, umur, jenis_kelamin, nomor_telepon, pilihan_lomba, browser, ip_address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sisssss", $nama, $umur, $jenis_kelamin, $nomor_telepon, $pilihan_lomba, $browser, $ip_address);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = "Pendaftaran berhasil!";
+                setcookie("last_registration", $nama, time() + (86400 * 30), "/");
+                header("Location: peserta.php");
+                exit();
+            } else {
+                throw new Exception("Gagal menyimpan data");
+            }
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Terjadi kesalahan: " . $e->getMessage();
+        } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
         }
-        $stmt->close();
+    } else {
+        $_SESSION['error_message'] = "Semua field harus diisi dengan benar!";
     }
     $db->closeConnection();
 }
@@ -39,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulir pendaftaran lomba 17 Agustus">
     <title>Daftar Lomba 17 Agustus</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
@@ -61,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($_SESSION['error_message'])): ?>
                 <div class="alert error">
                     <?php 
-                        echo $_SESSION['error_message'];
+                        echo htmlspecialchars($_SESSION['error_message']);
                         unset($_SESSION['error_message']);
                     ?>
                 </div>
@@ -70,12 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form id="registrationForm" method="POST" action="daftar.php" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required placeholder="Nama minimal 3 karakter">
+                    <input type="text" id="nama" name="nama" required 
+                           placeholder="Nama minimal 3 karakter"
+                           pattern=".{3,}"
+                           title="Minimal 3 karakter">
                 </div>
 
                 <div class="form-group">
                     <label for="umur">Umur</label>
-                    <input type="number" id="umur" name="umur" required min="5" max="60" placeholder="Umur minimal 5 tahun dan maksimal 60 tahun">
+                    <input type="number" id="umur" name="umur" required 
+                           min="5" max="60"
+                           placeholder="Umur minimal 5 tahun dan maksimal 60 tahun">
                 </div>
 
                 <div class="form-group">
@@ -90,12 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label for="nomor_telepon">Nomor Telepon</label>
-                    <input type="tel" id="nomor_telepon" name="nomor_telepon" required placeholder="Nomor telepon harus 10-13 digit angka">
+                    <input type="tel" id="nomor_telepon" name="nomor_telepon" required 
+                           pattern="[0-9]{10,13}"
+                           placeholder="Nomor telepon harus 10-13 digit angka"
+                           title="Nomor telepon harus 10-13 digit angka">
                 </div>
 
                 <div class="form-group">
                     <label for="pilihan_lomba">Pilihan Lomba</label>
-                    <select id="pilihan_lomba" name="pilihan_lomba" required placeholder="Silakan pilih lomba yang akan diikuti">
+                    <select id="pilihan_lomba" name="pilihan_lomba" required>
                         <option value="">Pilih Lomba</option>
                         <option value="Balap Karung">Balap Karung</option>
                         <option value="Panjat Pinang">Panjat Pinang</option>
