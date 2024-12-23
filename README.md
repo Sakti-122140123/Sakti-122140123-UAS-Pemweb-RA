@@ -4,6 +4,14 @@ Aplikasi web untuk pendaftaran dan manajemen lomba perayaan kemerdekaan Indonesi
 
 Website: [https://daftarlomba17.wuaze.com/](https://daftarlomba17.wuaze.com/)
 
+## Pengembang
+
+Nama : Sakti Mujahid Imani
+
+NIM : 122140123
+
+Kelas : RA
+
 ## Deskripsi Project
 
 Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplikasi ini memungkinkan pengguna untuk:
@@ -31,7 +39,7 @@ Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplika
 
 ### 1.1 Manipulasi DOM dengan JavaScript (15%)
 
-- **Form Input dengan 4+ Elemen:**
+**Form Input dengan 4+ Elemen:**
 
 ```html
 <form
@@ -91,7 +99,7 @@ Website ini dibuat untuk memudahkan pendaftaran peserta lomba 17 Agustus. Aplika
 - Input tel untuk nomor telepon (`nomor_telepon`)
 - Select dropdown untuk pilihan lomba (`pilihan_lomba`)
 
-- **Tampilan Data dalam Tabel:**
+**Tampilan Data dalam Tabel:**
 
 ```php
 <table>
@@ -183,10 +191,10 @@ document.addEventListener("DOMContentLoaded", function () {
 ```
 
 - **Event yang Diimplementasikan:**
-  1. `submit` event pada form untuk validasi sebelum pengiriman
-  2. `input` event pada semua input fields untuk menyimpan data sementara
-  3. `DOMContentLoaded` event untuk inisialisasi form dan animasi
-  4. `mouseenter/mouseleave` events untuk animasi kartu lomba
+  - `submit` event pada form untuk validasi sebelum pengiriman
+  - `input` event pada semua input fields untuk menyimpan data sementara
+  - `DOMContentLoaded` event untuk inisialisasi form dan animasi
+  - `mouseenter/mouseleave` events untuk animasi kartu lomba
 - **Validasi JavaScript:**
   - Validasi nama (minimal 3 karakter)
   - Validasi umur (5-60 tahun)
@@ -483,6 +491,8 @@ Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 ```
 
+Sesuaikan konfigurasi database di `connection.php`
+
 ```php
 class Database {
     private $host = "Sesuaikan dengan host di InfinityFree";          //Contoh : sql123.infinityfree.com
@@ -505,9 +515,3 @@ class Database {
 2. Import `lomba_17agustus.sql`
 3. Sesuaikan konfigurasi database di `connection.php`
 4. Akses melalui web server
-
-## Kontributor
-
-- Nama: [Sakti Mujahid Imani]
-- NIM: [122140123]
-- Kelas: [RA]
