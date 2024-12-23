@@ -70,12 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form id="registrationForm" method="POST" action="daftar.php" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required>
+                    <input type="text" id="nama" name="nama" required placeholder="Nama minimal 3 karakter">
                 </div>
 
                 <div class="form-group">
                     <label for="umur">Umur</label>
-                    <input type="number" id="umur" name="umur" required min="5" max="60">
+                    <input type="number" id="umur" name="umur" required min="5" max="60" placeholder="Umur minimal 5 tahun dan maksimal 60 tahun">
                 </div>
 
                 <div class="form-group">
@@ -90,12 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label for="nomor_telepon">Nomor Telepon</label>
-                    <input type="tel" id="nomor_telepon" name="nomor_telepon" required>
+                    <input type="tel" id="nomor_telepon" name="nomor_telepon" required placeholder="Nomor telepon harus 10-13 digit angka">
                 </div>
 
                 <div class="form-group">
                     <label for="pilihan_lomba">Pilihan Lomba</label>
-                    <select id="pilihan_lomba" name="pilihan_lomba" required>
+                    <select id="pilihan_lomba" name="pilihan_lomba" required placeholder="Silakan pilih lomba yang akan diikuti">
                         <option value="">Pilih Lomba</option>
                         <option value="Balap Karung">Balap Karung</option>
                         <option value="Panjat Pinang">Panjat Pinang</option>
