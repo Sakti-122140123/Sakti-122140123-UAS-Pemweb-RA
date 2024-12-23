@@ -219,16 +219,13 @@ echo htmlspecialchars($data);
 
 1. PHP Configuration:
 
-```ini
-php_value upload_max_filesize 10M
-php_value max_execution_time 300
 ```
-
-2. Security Headers:
-
-```apache
-Options -Indexes
-ServerSignature Off
+class Database {
+    private $host = "sql213.infinityfree.com";
+    private $username = "if0_37966635";
+    private $password = "Saktimujahid15"; 
+    private $database = "if0_37966635_lomba_17agustus";
+    private $conn;
 ```
 
 ## Fitur Tambahan
