@@ -1,6 +1,6 @@
-# Aplikasi Web Lomba 17 Agustus
+# Website Lomba 17 Agustus
 
-Aplikasi web untuk pendaftaran dan manajemen lomba perayaan kemerdekaan Indonesia. Aplikasi ini dibangun menggunakan PHP, JavaScript, dan MySQL dengan pendekatan berorientasi objek.
+Website untuk pendaftaran dan manajemen lomba perayaan kemerdekaan Indonesia. Aplikasi ini dibangun menggunakan PHP, JavaScript, dan MySQL dengan pendekatan berorientasi objek.
 
 Website: [https://daftarlomba17.wuaze.com/](https://daftarlomba17.wuaze.com/)
 
@@ -509,7 +509,7 @@ class Database {
 - Memory limit: 256MB
 - Upload max filesize: 32MB
 
-## Penggunaan Aplikasi
+## Penggunaan Website
 
 1. Clone repository ini
 2. Import `lomba_17agustus.sql`
