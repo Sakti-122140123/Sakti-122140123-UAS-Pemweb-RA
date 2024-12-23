@@ -8,11 +8,11 @@ Website dapat diakses di: https://daftarlomba17.wuaze.com/
 
 ## Pengembang
 
-Nama  : Sakti Mujahid Imani
+Nama   : Sakti Mujahid Imani
 
-NIM   : 122140123
+NIM    : 122140123
 
-Kelas : RA
+Kelas  : RA
 
 ## Deskripsi Project
 
