@@ -14,6 +14,7 @@ $result = $conn->query("SELECT * FROM peserta ORDER BY created_at DESC");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Peserta Lomba 17 Agustus</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
 </head>
 <body>
     <nav>

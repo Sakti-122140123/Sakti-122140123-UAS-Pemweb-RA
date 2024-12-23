@@ -8,7 +8,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lomba 17 Agustus</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
+</head>   
+
 <body>
     <nav>
         <div class="nav-container">

@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Lomba 17 Agustus</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
 </head>
 <body>
     <nav>
@@ -68,17 +69,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <form id="registrationForm" method="POST" action="daftar.php" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label for="nama">Nama Lengkap:</label>
+                    <label for="nama">Nama Lengkap</label>
                     <input type="text" id="nama" name="nama" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="umur">Umur:</label>
+                    <label for="umur">Umur</label>
                     <input type="number" id="umur" name="umur" required min="5" max="60">
                 </div>
 
                 <div class="form-group">
-                    <label>Jenis Kelamin:</label>
+                    <label>Jenis Kelamin</label>
                     <div class="radio-group">
                         <input type="radio" id="laki" name="jenis_kelamin" value="Laki-laki" required>
                         <label for="laki">Laki-laki</label>
@@ -88,12 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-group">
-                    <label for="nomor_telepon">Nomor Telepon:</label>
+                    <label for="nomor_telepon">Nomor Telepon</label>
                     <input type="tel" id="nomor_telepon" name="nomor_telepon" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="pilihan_lomba">Pilihan Lomba:</label>
+                    <label for="pilihan_lomba">Pilihan Lomba</label>
                     <select id="pilihan_lomba" name="pilihan_lomba" required>
                         <option value="">Pilih Lomba</option>
                         <option value="Balap Karung">Balap Karung</option>
