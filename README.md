@@ -228,11 +228,6 @@ ServerSignature Off
 
 ## Cara Penggunaan
 
-1. Clone repository ini
-2. Import `lomba_17agustus.sql` ke database
-3. Sesuaikan konfigurasi database di `connection.php`
-4. Akses melalui web browser
-
 Website dapat diakses di: https://daftarlomba17.wuaze.com/
 
 ## Pengembang
